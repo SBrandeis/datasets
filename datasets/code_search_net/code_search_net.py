@@ -155,18 +155,22 @@ class CodeSearchNet(datasets.GeneratorBasedBuilder):
             data_urls = {self.config.name: data_urls}
         # Download & extract the language archives
         data_dirs = [
-            os.path.join(dir, lang, "final", "jsonl")
-            for lang, dir in dl_manager.download_and_extract(data_urls).items()
+            os.path.join(directory, lang, "final", "jsonl")
+            for lang, directory in dl_manager.download_and_extract(data_urls).items()
         ]
 
         split2dirs = {
-            split_name: [os.path.join(dir, split_name) for dir in data_dirs]
+            split_name: [os.path.join(directory, split_name) for directory in data_dirs]
             for split_name in ["train", "test", "valid"]
         }
 
         split2paths = dl_manager.extract(
             {
-                split_name: [os.path.join(dir, entry_name) for entry_name in os.listdir(dir) for dir in split_dirs]
+                split_name: [
+                    os.path.join(directory, entry_name)
+                    for entry_name in os.listdir(directory)
+                    for directory in split_dirs
+                ]
                 for split_name, split_dirs in split2dirs.items()
             }
         )
