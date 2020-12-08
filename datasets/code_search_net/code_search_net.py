@@ -168,8 +168,8 @@ class CodeSearchNet(datasets.GeneratorBasedBuilder):
             {
                 split_name: [
                     os.path.join(directory, entry_name)
-                    for entry_name in os.listdir(directory)
                     for directory in split_dirs
+                    for entry_name in os.listdir(directory)
                 ]
                 for split_name, split_dirs in split2dirs.items()
             }
