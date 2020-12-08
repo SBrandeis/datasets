@@ -53,7 +53,7 @@ _LICENSE = "Various"
 
 _S3_BUCKET_URL = "https://s3.amazonaws.com/code-search-net/CodeSearchNet/v2/"
 _AVAILABLE_LANGUAGES = ["python", "java", "javascript", "go", "ruby", "php"]
-_URLs = {language: f"{language}.zip" for language in _AVAILABLE_LANGUAGES}
+_URLs = {language: _S3_BUCKET_URL +  f"{language}.zip" for language in _AVAILABLE_LANGUAGES}
 # URLs for "all" are just the concatenation of URLs for all languages
 _URLs["all"] = _URLs.copy()
 
